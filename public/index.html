@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SAT MD PAIR</title>
+</head>
+<body style="background:black; color:white; text-align:center;">
+
+<h1>🔥 SAT MD PAIR 🔥</h1>
+
+<input id="num" placeholder="260XXXXXXXXX" style="padding:10px;">
+<br><br>
+<button onclick="pair()" style="padding:10px; background:lime;">PAIR</button>
+
+<p id="result"></p>
+
+<script>
+async function pair() {
+    let number = document.getElementById("num").value;
+
+    let res = await fetch("/pair", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ number })
+    });
+
+    let data = await res.json();
+
+    document.getElementById("result").innerText =
+        data.status ? "CODE: " + data.code : "Pairing failed";
+}
+</script>
+
+</body>
+</html>
